@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ThreeJS Tutorial</title>
   <style>
     body { margin: 0; }
@@ -17,6 +16,15 @@
     const renderer = new THREE.WebGLRenderer();
     renderer.setSize(window.innerWidth, window.innerHeight);
     document.body.appendChild(renderer.domElement);
+
+    // Handle on resize
+    window.addEventListener('resize', function() {
+      const width = window.innerWidth;
+      const height= window.innerHeight;
+      renderer.setSize(width, height);
+      camera.aspect = width / height;
+      camera.updateProjectionMatrix;
+    });
 
     // create the shape
     const geometry = new THREE.BoxGeometry(1, 1, 1);
