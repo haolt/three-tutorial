@@ -11,5 +11,31 @@
 </head>
 <body>
   <script src="./three.js"></script>
+  <script>
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.body.appendChild(renderer.domElement);
+
+    // logic
+    const update = function() {
+
+    }
+
+    // draw scene
+    const render = function() {
+      renderer.render(scene, camera);
+    }
+
+    // run game loop: [ update > render > repeat ]
+    const gameLoop= function() {
+      requestAnimationFrame(gameLoop);
+      update();
+      render();
+    };
+
+    gameLoop();
+  </script>
 </body>
 </html>
