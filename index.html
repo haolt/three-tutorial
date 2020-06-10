@@ -10,6 +10,7 @@
 </head>
 <body>
   <script src="./three.js"></script>
+  <script src="./OrbitControls.js"></script>
   <script>
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
@@ -18,13 +19,15 @@
     document.body.appendChild(renderer.domElement);
 
     // Handle on resize
-    window.addEventListener('resize', function() {
-      const width = window.innerWidth;
-      const height= window.innerHeight;
-      renderer.setSize(width, height);
-      camera.aspect = width / height;
-      camera.updateProjectionMatrix;
-    });
+    function onWindowResize() {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize( window.innerWidth, window.innerHeight );
+    };
+    window.addEventListener( 'resize', onWindowResize, false );
+
+    // Orbit control
+    controls = new THREE.OrbitControls(camera, renderer.domElement);
 
     // create the shape
     const geometry = new THREE.BoxGeometry(1, 1, 1);
@@ -36,12 +39,12 @@
     scene.add(cube);
     
     // Note: important
-    camera.position.z = 5;
+    camera.position.z = 3;
 
     // logic
     const update = function() {
-      cube.rotation.x += 0.01;
-      cube.rotation.y += 0.01;
+      // cube.rotation.x += 0.01;
+      // cube.rotation.y += 0.01;
     }
 
     // draw scene
